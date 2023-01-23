@@ -46,4 +46,18 @@ export const authHandler = [
       return res(ctx.status(400, "EXPIRED_TOKEN"));
     }
   }),
+  rest.post(`${BASE_URL}/api/v2/auth/join`, async (req, res, ctx) => {
+    const body = await req.json();
+
+    if (body.email.length && body.password.length) {
+      return res(
+        ctx.json({
+          refreshToken: new Date(Date.now() + 60 * 60 * 1000 * 60).toString(),
+          accessToken: new Date(Date.now() + 20 * 1000 * 60 * 60).toString(),
+        })
+      );
+    } else {
+      return res(ctx.status(400));
+    }
+  }),
 ];
