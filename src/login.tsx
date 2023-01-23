@@ -1,17 +1,36 @@
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
 import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+interface Form {
+    email: string,
+    password: string
+}
 
 function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const onEmail = (event: React.ChangeEvent<HTMLInputElement>) => setEmail(event.target.value);
     const onPassword = (event: React.ChangeEvent<HTMLInputElement>) => setPassword(event.target.value);
-
-    const navigate = useNavigate();
     const onSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
-        navigate('/home');
+
+        const data: Form = {
+            email: email,
+            password: password
+        }
+        
+        login.mutate(data, { onError: () => {
+            alert('로그인에 실패하였습니다.');
+          },onSuccess: () => {
+            alert('로그인에 성공하였습니다.');
+            }
+        });
     }
+
+   const login = useMutation(['Login'], (data: Form) => axios.post('https://test/api/v2/auth/login', data));
+
     return (
         <div style={{display: 'flex', alignItems:'center',flexDirection: 'column', paddingTop: '40px', height: "100%", width: "100%"}}>
             <div style={{display: 'flex', alignItems:'center', flexDirection: 'column', border: 'solid 1px black', padding: '20px',height: "100%", width: "60%"}}>
