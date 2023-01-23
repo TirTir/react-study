@@ -1,14 +1,29 @@
 import './App.css';
+import Login from "./login";
+import Feed from './feed';
 
-function App() {
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+function App(){
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Login />,
+      children: [
+        {
+          path: "/feed",
+          element: <Feed />,
+        }
+      ]
+    }
+    
+  ]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-        </p>
-      </header>
-    </div>
-  );
-}
-
+    <RouterProvider router={router} />
+  )
+};
 export default App;
