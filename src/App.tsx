@@ -1,6 +1,6 @@
 import './App.css';
 import Login from "./login";
-import Feed from './feed';
+import Join from "./join";
 
 import {
   createBrowserRouter,
@@ -10,16 +10,13 @@ import {
 function App(){
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/login",
       element: <Login />,
-      children: [
-        {
-          path: "/feed",
-          element: <Feed />,
-        }
-      ]
+    },
+    {
+      path: "/join",
+      element: <Join />,
     }
-    
   ]);
 
   return (
