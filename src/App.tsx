@@ -1,6 +1,7 @@
 import './App.css';
 import Login from "./login";
 import Join from "./join";
+import Home from "./home";
 
 import {
   createBrowserRouter,
@@ -16,6 +17,10 @@ function App(){
     {
       path: "/join",
       element: <Join />,
+    },
+    {
+      path: "/home",
+      element: <Home />
     }
   ]);
 

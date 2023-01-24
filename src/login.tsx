@@ -1,18 +1,24 @@
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface Form {
     email: string,
     password: string
 }
 
+interface Token {
+    refreshToken: string,
+	accessToken: string
+}
 function Login(){
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const onEmail = (event: React.ChangeEvent<HTMLInputElement>) => setEmail(event.target.value);
     const onPassword = (event: React.ChangeEvent<HTMLInputElement>) => setPassword(event.target.value);
+    const navigate = useNavigate();
     const onSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
 
@@ -23,13 +29,16 @@ function Login(){
         
         login.mutate(data, { onError: () => {
             alert('로그인에 실패하였습니다.');
-          },onSuccess: () => {
+          },onSuccess: (res) => {
+            localStorage.setItem("token", res.data.accessToken)
+
             alert('로그인에 성공하였습니다.');
+            navigate("/home");
             }
         });
     }
 
-   const login = useMutation(['Login'], (data: Form) => axios.post('https://test/api/v2/auth/login', data));
+   const login = useMutation(['Login'], (data: Form) => axios.post<Token>('https://test/api/v2/auth/login', data));
 
     return (
         <div style={{display: 'flex', alignItems:'center',flexDirection: 'column', paddingTop: '40px', height: "100%", width: "100%"}}>
