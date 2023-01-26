@@ -28,20 +28,26 @@ function Join(){
 
     const join = useMutation(['Join'], (data: Form) => axios.post('https://test/api/v2/auth/join', data));
     return(
-        <div>
-            <input
-                onChange={onEmail}
-                value = {email}
-                type = "text"
-                placeholder= "이메일"
-            />
-            <input
-                onChange={onPassword}
-                value = {password}
-                type = "text"
-                placeholder= "비밀번호"
-            />
-            <button onClick={onSubmit}>회원가입</button>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
+            <div>
+                <h1 style={{alignContent: 'center'}}>XAM!</h1>
+                <h3 style={{display: 'flex', color: 'gray'}}>친구들의 사진과 동영상을 보려면 가입하세요.</h3>
+            </div>
+            <div style={{display: 'flex',flexDirection: 'column', alignItems: 'center', width: '100%'}}>
+                <input style={{width: '60%'}}
+                    onChange={onEmail}
+                    value = {email}
+                    type = "text"
+                    placeholder= "이메일 주소"
+                />
+                <input style={{width: '60%'}}
+                    onChange={onPassword}
+                    value = {password}
+                    type = "text"
+                    placeholder= "비밀번호"
+                />
+                <button style={{backgroundColor: 'blueviolet', color: 'white', width: '61%'}} onClick={onSubmit}>가입</button>
+            </div>
         </div>
     )
 }

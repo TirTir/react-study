@@ -12,6 +12,7 @@ interface Token {
     refreshToken: string,
 	accessToken: string
 }
+
 function Login(){
 
     const [email, setEmail] = useState("");
@@ -32,7 +33,7 @@ function Login(){
           },onSuccess: (res) => {
             localStorage.setItem("token", res.data.accessToken)
 
-            alert('로그인에 성공하였습니다.');
+            alert('환영합니다!');
             navigate("/home");
             }
         });
@@ -64,9 +65,9 @@ function Login(){
                 </div>
             </div>
             <h3 style={{color:"gray"}}>--------- 또는 ---------</h3>
-            <div style={{display: 'flex', alignItems: 'center',border: 'solid 1px black', height: "50%"}}>
+            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center',border: 'solid 1px black', width: "63%", height: "50%"}}>
                 <p>계정이 없으신가요?</p>
-                <Link style={{color: 'blue'}} to={"/join"}>가입하기</Link>
+                <Link style={{color: 'blue', paddingBottom: '20px'}} to={"/join"}>가입하기</Link>
             </div>
         </div>
     )
