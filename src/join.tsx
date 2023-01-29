@@ -2,6 +2,9 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react"
 
+import { Button } from 'antd';
+import { useNavigate } from "react-router";
+
 interface Form {
     email: string
     password: string
@@ -12,9 +15,8 @@ function Join(){
     const [password, setPassword] = useState("");
     const onEmail = (event: React.ChangeEvent<HTMLInputElement>) => setEmail(event.target.value);
     const onPassword = (event: React.ChangeEvent<HTMLInputElement>) => setPassword(event.target.value);
-    const onSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        console.log('실행');
-        event.preventDefault();
+    const navigate = useNavigate();
+    const onSubmit = () => {
         join.mutate({ email, password }, {onError: () => {
             if(email === "")
                 alert("이메일을 입력하세요");
@@ -22,6 +24,7 @@ function Join(){
                 alert("비밀번호를 입력하세요");
         }, onSuccess: () => {
             alert("회원가입 성공");
+            navigate("/login");
         }
         })
     }
@@ -46,7 +49,8 @@ function Join(){
                     type = "text"
                     placeholder= "비밀번호"
                 />
-                <button style={{backgroundColor: 'blueviolet', color: 'white', width: '61%'}} onClick={onSubmit}>가입</button>
+
+                <Button style={{backgroundColor: 'blueviolet', color: 'white', width: "61%"}} type="primary" block={true} onClick={onSubmit}>가입</Button>
             </div>
         </div>
     )

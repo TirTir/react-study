@@ -3,6 +3,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
+import { Button, Space } from 'antd';
+
 interface Form {
     email: string,
     password: string
@@ -14,14 +16,13 @@ interface Token {
 }
 
 function Login(){
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const onEmail = (event: React.ChangeEvent<HTMLInputElement>) => setEmail(event.target.value);
     const onPassword = (event: React.ChangeEvent<HTMLInputElement>) => setPassword(event.target.value);
     const navigate = useNavigate();
-    const onSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        event.preventDefault();
+
+    const onSubmit = () => {
 
         const data: Form = {
             email: email,
@@ -32,7 +33,6 @@ function Login(){
             alert('로그인에 실패하였습니다.');
           },onSuccess: (res) => {
             localStorage.setItem("token", res.data.accessToken)
-
             alert('환영합니다!');
             navigate("/home");
             }
@@ -60,9 +60,11 @@ function Login(){
                         placeholder= "비밀번호"
 
                     />
-                    <br/>
-                    <button style={{backgroundColor: 'blueviolet', color: 'white'}} onClick={onSubmit}>로그인</button>
                 </div>
+                <br/>
+                <Space direction="vertical">
+                        <Button type="primary" block onClick={onSubmit}>로그인</Button>
+                </Space>
             </div>
             <h3 style={{color:"gray"}}>--------- 또는 ---------</h3>
             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center',border: 'solid 1px black', width: "63%", height: "50%"}}>

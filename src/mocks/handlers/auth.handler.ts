@@ -8,8 +8,8 @@ export const authHandler = [
     if (body.email === "test" && body.password === "1") {
       return res(
         ctx.json({
-          refreshToken: new Date(Date.now() + 60 * 60 * 1000 * 60).toString(),
-          accessToken: new Date(Date.now() + 20 * 1000 * 60 * 60).toString(),
+          refreshToken: "test.refreshToken",
+          accessToken: "test.accessToken",
         })
       );
     } else {

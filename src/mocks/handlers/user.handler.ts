@@ -9,10 +9,7 @@ export const userHandler = [
     if (!tokenWithBearer) return res(ctx.status(400));
 
     const token = tokenWithBearer.split("Bearer ")[1];
-
-    console.log("users/me", +new Date(token) - +new Date(), token);
-
-    if (new Date(token) > new Date()) {
+    if(token){
       return res(
         ctx.json(
           userDB.user.findFirst({
