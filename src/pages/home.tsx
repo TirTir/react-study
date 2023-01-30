@@ -25,13 +25,9 @@ function Home() {
     }, [])
 
     const getUser = async() =>{
-        console.log('서버');
         const datalist = await axios.get<User>('https://test/api/v1/users/me', {
             headers:{ authorization: `Bearer ${localStorage.getItem("token")}`}
         });
-        console.log("datalist :  !!!!!!!!! :", datalist);
-        // const datalist = {data: , config, header}
-        // AxiosResponse => { data: 서버에서 내려준값 , config1:123, header : 213123}
         return datalist;
     }
     

@@ -1,7 +1,7 @@
 import './App.css';
-import Login from "./login";
-import Join from "./join";
-import Home from "./home";
+import Login from "./pages/Login";
+import Join from "./pages/Join";
+import Home from "./pages/Home";
 
 import {
   createBrowserRouter,
