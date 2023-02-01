@@ -1,14 +1,8 @@
-import './App.css';
-import Login from "./pages/Login";
-import Join from "./pages/Join";
-import Home from "./pages/Home";
+import "./App.css";
+import { Home, Login, Join } from "./pages";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-
-function App(){
+function App() {
   const router = createBrowserRouter([
     {
       path: "/login",
@@ -20,12 +14,10 @@ function App(){
     },
     {
       path: "/home",
-      element: <Home />
-    }
+      element: <Home />,
+    },
   ]);
 
-  return (
-    <RouterProvider router={router} />
-  )
-};
+  return <RouterProvider router={router} />;
+}
 export default App;
