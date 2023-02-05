@@ -1,15 +1,9 @@
-import { JoinForm } from "../components/auth";
+import { JoinForm } from "../../components/auth";
+import * as S from "./Join.styled";
 
 export function Join() {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "100%",
-      }}
-    >
+    <div css={S.joinLayout}>
       <div>
         <h1 style={{ alignContent: "center" }}>XAM!</h1>
         <h3 style={{ display: "flex", color: "gray" }}>

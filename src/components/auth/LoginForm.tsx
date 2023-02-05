@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { Button, Space } from "antd";
-
 import { usePostLogin } from "../../hooks/auth";
 import { PostLoginReq } from "../../services/auth/postLogin";
+import * as S from "./LoginForm.styled";
 
 export function LoginForm() {
   const [email, setEmail] = useState("");
@@ -37,17 +36,7 @@ export function LoginForm() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-        border: "solid 1px black",
-        padding: "20px",
-        height: "100%",
-        width: "60%",
-      }}
-    >
+    <div css={S.formLayout}>
       <h1>XAM!</h1>
       <div
         style={{

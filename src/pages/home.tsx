@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Space } from "antd";
 import { useGetUser } from "../hooks/user";
+import {} from "@emotion/css";
+
 export function Home() {
   const logout = () => {
     localStorage.removeItem("token");

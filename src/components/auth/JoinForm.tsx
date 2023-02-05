@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "antd";
 import { useNavigate } from "react-router";
 import { usePostJoin } from "../../hooks/auth";
+import * as S from "./JoinForm.styled";
 
 export function JoinForm() {
   const [email, setEmail] = useState("");
@@ -12,7 +13,6 @@ export function JoinForm() {
     setPassword(event.target.value);
 
   const navigate = useNavigate();
-
   const join = usePostJoin();
 
   const onSubmit = () => {
@@ -32,14 +32,7 @@ export function JoinForm() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "100%",
-      }}
-    >
+    <div css={S.formLayout}>
       <input
         style={{ width: "60%" }}
         onChange={onEmail}
@@ -56,11 +49,7 @@ export function JoinForm() {
       />
 
       <Button
-        style={{
-          backgroundColor: "blueviolet",
-          color: "white",
-          width: "61%",
-        }}
+        css={S.buttonStyle}
         type="primary"
         block={true}
         onClick={onSubmit}
