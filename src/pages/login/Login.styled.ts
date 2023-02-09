@@ -13,6 +13,7 @@ export const loginLayout = css`
   display: flex;
   align-items: center;
   flex-direction: column;
+  border: solid 1px black;
   padding-top: 40px;
   height: 100%;
   width: 100%;
